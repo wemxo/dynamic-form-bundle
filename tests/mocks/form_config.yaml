@@ -1,7 +1,9 @@
 config:
     form:
-        field:
-            type: Symfony\Component\Form\Extension\Core\Type\TextType
-            options:
-                label: labelValue
-            constraints: ~
+        subscribers: ~
+        fields:
+            field:
+                type: Symfony\Component\Form\Extension\Core\Type\TextType
+                options:
+                    label: labelValue
+                constraints: ~

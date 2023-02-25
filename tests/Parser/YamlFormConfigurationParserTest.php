@@ -33,12 +33,15 @@ class YamlFormConfigurationParserTest extends TestCase
         $config = [
             'config' => [
                 'form' => [
-                    'field' => [
-                        'type' => TextType::class,
-                        'options' => [
-                            'label' => 'labelValue',
+                    'subscribers' => null,
+                    'fields' => [
+                        'field' => [
+                            'type' => TextType::class,
+                            'options' => [
+                                'label' => 'labelValue',
+                            ],
+                            'constraints' => null,
                         ],
-                        'constraints' => null,
                     ],
                 ],
             ],
