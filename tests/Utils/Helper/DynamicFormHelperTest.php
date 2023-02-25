@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Wemxo\DynamicFormBundle\Tests;
+namespace Wemxo\DynamicFormBundle\Tests\Utils\Helper;
 
 use PHPUnit\Framework\TestCase;
 use Wemxo\DynamicFormBundle\Utils\Helper\DynamicFormHelper;

@@ -1,0 +1,7 @@
+config:
+    form:
+        field:
+            type: Symfony\Component\Form\Extension\Core\Type\TextType
+            options:
+                label: labelValue
+            constraints: ~

@@ -23,6 +23,7 @@
         </include>
         <exclude>
             <directory>src/DependencyInjection</directory>
+            <file>src/Builder/FormConfiguration.php</file>
             <file>src/DynamicFormBundle.php</file>
         </exclude>
     </coverage>

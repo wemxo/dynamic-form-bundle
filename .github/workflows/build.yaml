@@ -4,16 +4,15 @@ on:
         branches:
             - develop
             - master
-            - main
     pull_request: ~
 jobs:
     build:
+        if: github.event_name != 'pull_request' || github.base_ref == 'refs/heads/master' || github.base_ref == 'refs/heads/develop'
         strategy:
             matrix:
                 php-versions: ['8.1', '8.2']
         name: Continues Integration (PHP ${{ matrix.php-versions }})
         runs-on: ubuntu-latest
-        if: "!contains(github.event.head_commit.message, '[ci]')"
         steps:
             # Checkout project
             - name: Checkout
@@ -48,9 +47,19 @@ jobs:
             # PhpUnit
             - name: PhpUnit
               run: bin/simple-phpunit --coverage-clover ./clover.xml
+            # Generate test coverage badge (only master branch)
             - name: Generate test coverage badge
               uses: timkrase/phpunit-coverage-badge@v1.2.0
+              if: ${{ github.ref == 'refs/heads/master' }}
               with:
-                  coverage_badge_path: 'badge-coverage.svg'
-                  push_badge: true
-                  repo_token: '${{ secrets.COVERAGE_BADGE }}'
+                  coverage_badge_path: coverage.svg
+                  push_badge: false
+            # Update test coverage badge (only master branch)
+            - name: update badge
+              uses: exuanbo/actions-deploy-gist@v1
+              if: ${{ github.ref == 'refs/heads/master' }}
+              with:
+                  token: ${{ secrets.GIST_COVERAGE_BADGE }}
+                  gist_id: 210e582b8ded2b1013aeab92bad9f5fe
+                  file_path: coverage.svg
+                  file_type: binary
