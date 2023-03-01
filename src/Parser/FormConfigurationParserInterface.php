@@ -4,9 +4,6 @@ declare(strict_types=1);
 
 namespace Wemxo\DynamicFormBundle\Parser;
 
-use Symfony\Component\DependencyInjection\Attribute\AutoconfigureTag;
-
-#[AutoconfigureTag(name: 'wemxo.dynamic_form.form_configuration_parser')]
 interface FormConfigurationParserInterface
 {
     /**

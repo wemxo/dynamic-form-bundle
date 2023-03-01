@@ -23,6 +23,7 @@ class FormConfigurationLoaderTest extends TestCase
         $formConfigurationLoader = new FormConfigurationLoader([]);
         $reflectionClass = new \ReflectionClass($formConfigurationLoader);
         $reflectionProperty = $reflectionClass->getProperty('configPaths');
+        $reflectionProperty->setAccessible(true);
         $this->assertEmpty($reflectionProperty->getValue($formConfigurationLoader));
         $formConfigurationLoader->addConfigurationPath('test path');
         $this->assertCount(1, $reflectionProperty->getValue($formConfigurationLoader));
@@ -34,6 +35,7 @@ class FormConfigurationLoaderTest extends TestCase
         $cache = $this->createMock(CacheInterface::class);
         $reflectionClass = new \ReflectionClass($formConfigurationLoader);
         $reflectionProperty = $reflectionClass->getProperty('cache');
+        $reflectionProperty->setAccessible(true);
         $this->assertNull($reflectionProperty->getValue($formConfigurationLoader));
         $formConfigurationLoader->setCache($cache);
         $this->assertSame($cache, $reflectionProperty->getValue($formConfigurationLoader));
@@ -44,6 +46,7 @@ class FormConfigurationLoaderTest extends TestCase
         $formConfigurationLoader = new FormConfigurationLoader([]);
         $reflectionClass = new \ReflectionClass($formConfigurationLoader);
         $reflectionProperty = $reflectionClass->getProperty('recursive');
+        $reflectionProperty->setAccessible(true);
         $this->assertTrue($reflectionProperty->getValue($formConfigurationLoader));
         $formConfigurationLoader->setRecursive(false);
         $this->assertFalse($reflectionProperty->getValue($formConfigurationLoader));

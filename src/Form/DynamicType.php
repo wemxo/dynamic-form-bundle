@@ -13,8 +13,11 @@ use Wemxo\DynamicFormBundle\Exception\FormConfigurationNotFound;
 
 class DynamicType extends AbstractType
 {
-    public function __construct(private readonly DynamicFormBuilderInterface $dynamicFormBuilder)
+    private DynamicFormBuilderInterface $dynamicFormBuilder;
+
+    public function __construct(DynamicFormBuilderInterface $dynamicFormBuilder)
     {
+        $this->dynamicFormBuilder = $dynamicFormBuilder;
     }
 
     /**

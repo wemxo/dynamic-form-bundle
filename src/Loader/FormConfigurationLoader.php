@@ -7,7 +7,6 @@ namespace Wemxo\DynamicFormBundle\Loader;
 use Iterator;
 use Psr\Cache\InvalidArgumentException;
 use RuntimeException;
-use Symfony\Component\DependencyInjection\Attribute\TaggedIterator;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Finder\SplFileInfo;
 use Symfony\Contracts\Cache\CacheInterface;
@@ -30,14 +29,12 @@ class FormConfigurationLoader implements FormConfigurationLoaderInterface
     private ?CacheInterface $cache = null;
     private iterable $formConfigurationParsers;
 
-    public function __construct(
-        #[TaggedIterator('wemxo.dynamic_form.form_configuration_parser')]
-        iterable $formConfigurationParsers
-    ) {
+    public function __construct(iterable $formConfigurationParsers)
+    {
         $this->formConfigurationParsers = $formConfigurationParsers;
     }
 
-    public function addConfigurationPath(string $configurationPath): static
+    public function addConfigurationPath(string $configurationPath): self
     {
         if (!in_array($configurationPath, $this->configPaths)) {
             $this->configPaths[] = $configurationPath;

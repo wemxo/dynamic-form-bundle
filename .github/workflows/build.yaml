@@ -4,13 +4,15 @@ on:
         branches:
             - develop
             - master
-    pull_request: ~
+    pull_request:
+        branches:
+            - master
+            - develop
 jobs:
     build:
-        if: github.event_name != 'pull_request' || github.base_ref == 'refs/heads/master' || github.base_ref == 'refs/heads/develop'
         strategy:
             matrix:
-                php-versions: ['8.1', '8.2']
+                php-versions: ['7.4', '8.1', '8.2']
         name: Continues Integration (PHP ${{ matrix.php-versions }})
         runs-on: ubuntu-latest
         steps:
