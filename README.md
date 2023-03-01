@@ -6,12 +6,10 @@ Dynamic form bundle gives you the ability to create forms dynamically based on a
 
 ## Requirements / Dependencies
 
-- **PHP 8.1 or higher**
-- **symfony/framework-bundle 6.2 or higher**
-- **symfony/form 6.2 or higher**
-- **symfony/finder 6.2 or higher**
-- **symfony/cache 6.2 or higher**
-- **symfony/yaml 6.2 or higher**
+- **PHP 7.4 or higher**
+- **symfony/framework-bundle 5.0 or higher**
+- **symfony/form 5.0 or higher**
+- **symfony/finder 5.0 or higher**
 
 ## Usage
 
@@ -385,10 +383,11 @@ class AppController extends AbstractController
     #[Route(name: 'app_home')]
     public function home(FormFactoryInterface $formFactory): Response
     {
+        $user = $this->getUser();
+        $countryLabel = $user->getCountry()->getLabel();
         $form = $formFactory->createNamed('my_custom_prefix', DynamicType::class, null, [
-            'dynamic_key' => DynamicFormHelper::configKey('case_one', 'scase_three', 'ss_case_one'),
+            'dynamic_key' => DynamicFormHelper::configKey('address', $countryLabel),
         ]);
-
 
         return $this->render('app/home.html.twig', [
             'form' => $form->createView()
@@ -445,7 +444,5 @@ france:
     form:
         subscribers:
             - address_event_subscriber # The value returned from the getName function.
-        fields:
-        ....
-        ....
+        fields: []
 ```

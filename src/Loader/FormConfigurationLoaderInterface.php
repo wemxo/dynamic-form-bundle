@@ -13,7 +13,7 @@ interface FormConfigurationLoaderInterface
     /**
      * Add configuration files path.
      */
-    public function addConfigurationPath(string $configurationPath): static;
+    public function addConfigurationPath(string $configurationPath): FormConfigurationLoaderInterface;
 
     /**
      * If true, the loader will browse configuration folders recursively.
