@@ -46,8 +46,13 @@ jobs:
             # Coding standard
             - name: Coding standards checks (php_codesniffer)
               run: bin/phpcs -n --colors --error-severity=1
-            # PhpUnit
-            - name: PhpUnit
+            # PhpUnit 7.4
+            - name: PhpUnit 7.4
+              if: matrix.php-versions == '7.4'
+              run: bin/simple-phpunit --configuration phpunit-php74.xml.dist --coverage-clover ./clover.xml
+            # PhpUnit 8
+            - name: PhpUnit 8
+              if: startsWith(matrix.php-versions, '8')
               run: bin/simple-phpunit --coverage-clover ./clover.xml
             # Generate test coverage badge (only master branch)
             - name: Generate test coverage badge
