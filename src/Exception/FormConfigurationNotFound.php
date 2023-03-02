@@ -9,9 +9,14 @@ use Exception;
 class FormConfigurationNotFound extends Exception
 {
     private const MESSAGE = 'Dynamic form configuration not found !';
-    public function __construct(private readonly string $configurationKey)
+
+    private string $configurationKey;
+
+    public function __construct(string $configurationKey)
     {
-        parent::__construct(self::MESSAGE, 901, null);
+        parent::__construct(self::MESSAGE, 901);
+
+        $this->configurationKey = $configurationKey;
     }
 
     public function getConfigurationKey(): string

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services
+        https://symfony.com/schema/dic/services/services-1.0.xsd">
+    <services>
+        <defaults autowire="true" autoconfigure="true"/>
+
+        <prototype
+                namespace="Wemxo\DynamicFormBundle\"
+                resource="../src/"
+                exclude="../src/{DependencyInjection,Exception,DTO,Utils,DynamicFormBundle.php}"
+        />
+
+        <instanceof id="Wemxo\DynamicFormBundle\EventSubscriber\DynamicFormEventSubscriber">
+            <tag name="wemxo.dynamic_form.event_subscriber"/>
+        </instanceof>
+
+        <instanceof id="Wemxo\DynamicFormBundle\Parser\FormConfigurationParserInterface">
+            <tag name="wemxo.dynamic_form.form_configuration_parser"/>
+        </instanceof>
+
+        <service id="Wemxo\DynamicFormBundle\Loader\FormConfigurationLoader">
+            <argument key="$formConfigurationParsers" type="tagged_iterator" tag="wemxo.dynamic_form.form_configuration_parser"/>
+        </service>
+
+        <service id="Wemxo\DynamicFormBundle\Builder\DynamicFormBuilder">
+            <argument key="$eventSubscribers" type="tagged_iterator" tag="wemxo.dynamic_form.event_subscriber"/>
+        </service>
+    </services>
+</container>

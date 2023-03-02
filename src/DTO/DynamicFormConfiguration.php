@@ -6,10 +6,14 @@ namespace Wemxo\DynamicFormBundle\DTO;
 
 class DynamicFormConfiguration
 {
-    public function __construct(
-        private readonly string $key,
-        private readonly array  $config
-    ) {
+    private string $key;
+
+    private array $config;
+
+    public function __construct(string $key, array  $config)
+    {
+        $this->key = $key;
+        $this->config = $config;
     }
 
     public function getKey(): string
