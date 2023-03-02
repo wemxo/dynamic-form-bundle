@@ -18,16 +18,16 @@
         </testsuite>
     </testsuites>
 
-    <coverage>
-        <include>
+    <filter>
+        <whitelist>
             <directory suffix=".php">src</directory>
-        </include>
-        <exclude>
-            <directory>src/DependencyInjection</directory>
-            <file>src/Builder/FormConfiguration.php</file>
-            <file>src/DynamicFormBundle.php</file>
-        </exclude>
-    </coverage>
+            <exclude>
+                <directory>src/DependencyInjection</directory>
+                <file>src/Builder/FormConfiguration.php</file>
+                <file>src/DynamicFormBundle.php</file>
+            </exclude>
+        </whitelist>
+    </filter>
 
     <listeners>
         <listener class="Symfony\Bridge\PhpUnit\SymfonyTestsListener"/>
