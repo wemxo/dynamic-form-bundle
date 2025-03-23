@@ -89,6 +89,7 @@ class DynamicFormBuilderTest extends TestCase
         ;
         $dynamicFormBuilder = new DynamicFormBuilder(
             $eventSubscribers,
+            [],
             $formConfigurationLoader
         );
         $dynamicFormBuilder->build('key', $formBuilder);

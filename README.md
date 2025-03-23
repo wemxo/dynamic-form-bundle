@@ -1,6 +1,6 @@
 # dynamic-form-bundle
 
-![GitHub](https://img.shields.io/github/license/wemxo/dynamic-form-bundle) ![build](https://github.com/wemxo/dynamic-form-bundle/actions/workflows/build.yaml/badge.svg?branch=master) ![img](https://gist.githubusercontent.com/zta9taw/210e582b8ded2b1013aeab92bad9f5fe/raw/coverage.svg) ![GitHub all releases](https://img.shields.io/github/downloads/wemxo/dynamic-form-bundle/total?style=flat)
+![GitHub](https://img.shields.io/github/license/wemxo/dynamic-form-bundle) ![build](https://github.com/wemxo/dynamic-form-bundle/actions/workflows/build.yaml/badge.svg?branch=master) ![img](https://gist.githubusercontent.com/zta9taw/210e582b8ded2b1013aeab92bad9f5fe/raw/coverage.svg) ![GitHub all releases](https://img.shields.io/packagist/dt/wemxo/dynamic-form-bundle)
 
 Dynamic form bundle gives you the ability to create forms dynamically based on a given configuration.
 
