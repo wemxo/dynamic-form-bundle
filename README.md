@@ -64,8 +64,10 @@ when@prod:
 france:
     form:
         subscribers: ~
+        transformers: ~
         fields:
             address: &address
+                transformers: ~
                 type: &textType Symfony\Component\Form\Extension\Core\Type\TextType
                 options:
                     label: Address
@@ -98,6 +100,7 @@ france:
 italy:
     form:
         subscribers: ~
+        transformers: ~
         fields:
             address: *address
             addressComplement: *addressComplement
@@ -116,6 +119,7 @@ italy:
 morocco:
     form:
         subscribers: ~
+        transformers: ~
         fields:
             address: *address
             postalCode: *postalCode
@@ -141,8 +145,10 @@ return [
     'france' => [
         'form' => [
             'subscribers' => NULL,
+            'transformers' => NULL,
             'fields' => [
                 'address' => [
+                    'transformers' => NULL,
                     'type' => 'Symfony\\Component\\Form\\Extension\\Core\\Type\\TextType',
                     'options' => [
                         'label' => 'Address',
@@ -195,6 +201,7 @@ return [
     'italy' => [
         'form' => [
             'subscribers' => NULL,
+            'transformers' => NULL,
             'fields' => [
                 'address' => [
                     'type' => 'Symfony\\Component\\Form\\Extension\\Core\\Type\\TextType',
@@ -267,6 +274,7 @@ return [
     'morocco' => [
         'form' => [
             'subscribers' => NULL,
+            'transformers' => NULL,
             'fields' => [
                 'address' => [
                     'type' => 'Symfony\\Component\\Form\\Extension\\Core\\Type\\TextType',
@@ -444,5 +452,58 @@ france:
     form:
         subscribers:
             - address_event_subscriber # The value returned from the getName function.
+        fields: []
+```
+
+### Use form model transformer
+
+1 - Create a class by implementing the interface `Wemxo\DynamicFormBundle\DataTransformer\DynamicDataTransformer`.
+
+​	1.1 - Implement `getName` function.
+
+​	1.2 - Implement `transform` function.
+
+​	1.3 - Implement `reverseTransform` function.
+
+```php
+<?php
+
+declare(strict_types=1);
+
+namespace App\Form;
+
+use Wemxo\DynamicFormBundle\DataTransformer\DynamicDataTransformer;
+
+class AddressFormDataTransformer implements DynamicDataTransformer
+{
+
+    public function getName(): string
+    {
+        return 'address_data_transformer';
+    }
+
+    public function transform(mixed $value): mixed
+    {
+        if (is_array($value)) {
+            return json_encode($value, JSON_PRETTY_PRINT);
+        }
+
+        return $value;
+    }
+
+    public function reverseTransform(mixed $value): mixed
+    {
+        return $value;
+    }
+}
+```
+
+​	1.3 - Update form configuration
+
+```yaml
+france:
+    form:
+        transformers:
+            - address_data_transformer # The value returned from the getName function.
         fields: []
 ```
