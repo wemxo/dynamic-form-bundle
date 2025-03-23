@@ -59,7 +59,7 @@ class FormConfigurationLoaderTest extends TestCase
         $this->expectException(RuntimeException::class);
         $this->expectExceptionMessage(sprintf(
             'Unable to find form configuration parser for %s',
-            realpath(__DIR__ . '/../mocks/form_config.yaml')
+            realpath(__DIR__ . '/../mocks/form_config.php')
         ));
         $formConfigurationLoader->getConfiguration('test');
     }

@@ -12,20 +12,13 @@
                 exclude="../src/{DependencyInjection,Exception,DTO,Utils,DynamicFormBundle.php}"
         />
 
-        <instanceof id="Wemxo\DynamicFormBundle\EventSubscriber\DynamicFormEventSubscriber">
-            <tag name="wemxo.dynamic_form.event_subscriber"/>
-        </instanceof>
-
-        <instanceof id="Wemxo\DynamicFormBundle\Parser\FormConfigurationParserInterface">
-            <tag name="wemxo.dynamic_form.form_configuration_parser"/>
-        </instanceof>
-
         <service id="Wemxo\DynamicFormBundle\Loader\FormConfigurationLoader">
             <argument key="$formConfigurationParsers" type="tagged_iterator" tag="wemxo.dynamic_form.form_configuration_parser"/>
         </service>
 
         <service id="Wemxo\DynamicFormBundle\Builder\DynamicFormBuilder">
             <argument key="$eventSubscribers" type="tagged_iterator" tag="wemxo.dynamic_form.event_subscriber"/>
+            <argument key="$dataTransformers" type="tagged_iterator" tag="wemxo.dynamic_form.data_transformer"/>
         </service>
     </services>
 </container>
