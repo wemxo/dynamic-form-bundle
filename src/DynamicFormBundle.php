@@ -14,7 +14,7 @@ use Wemxo\DynamicFormBundle\Parser\FormConfigurationParserInterface;
 
 class DynamicFormBundle extends Bundle
 {
-    public function build(ContainerBuilder $container)
+    public function build(ContainerBuilder $container): void
     {
         $container
             ->registerForAutoconfiguration(DynamicDataTransformer::class)

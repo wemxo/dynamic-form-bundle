@@ -24,12 +24,12 @@ class DynamicType extends AbstractType
      * @throws FormConfigurationNotFound
      * @throws InvalidArgumentException
      */
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $this->dynamicFormBuilder->build($options['dynamic_key'], $builder);
     }
 
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver
             ->setDefined(['dynamic_key', 'dynamic_options'])

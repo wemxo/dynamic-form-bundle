@@ -16,7 +16,7 @@ class DynamicFormExtension extends Extension
     /**
      * @throws Exception
      */
-    public function load(array $configs, ContainerBuilder $container)
+    public function load(array $configs, ContainerBuilder $container): void
     {
         $loader = new XmlFileLoader(
             $container,
